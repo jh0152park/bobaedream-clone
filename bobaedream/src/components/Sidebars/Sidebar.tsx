@@ -4,6 +4,7 @@ import ReferenceBox from "./ReferenceBox";
 import NoticeBox from "./NoticeBox";
 import ETCBox from "./ETCBox";
 import ADBox from "./ADBox";
+import SNSBox from "./SNSBox";
 
 export default function Sidebar() {
     return (
@@ -20,6 +21,7 @@ export default function Sidebar() {
             <NoticeBox />
             <ETCBox />
             <ADBox />
+            <SNSBox />
         </VStack>
     );
 }
