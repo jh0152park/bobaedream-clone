@@ -1,5 +1,10 @@
-import { Center, Heading, VStack } from "@chakra-ui/react";
+import { Center, HStack, Heading, VStack } from "@chakra-ui/react";
+import Sidebar from "../components/Sidebars/Sidebar";
 
 export default function Main() {
-    return <VStack w="100%" h="100vh"></VStack>;
+    return (
+        <HStack w="100%" h="150vh">
+            <Sidebar />
+        </HStack>
+    );
 }
