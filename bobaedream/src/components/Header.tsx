@@ -2,8 +2,19 @@ import { FaCar } from "react-icons/fa6";
 import { FiMenu } from "react-icons/fi";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { Center, HStack, Icon, Text, VStack } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+    const navigate = useNavigate();
+
+    function onLogoClick() {
+        navigate("/");
+    }
+
+    function onSlignInClick() {
+        navigate("/signin");
+    }
+
     return (
         <VStack w="100vw" h="100px" spacing={0}>
             <HStack
@@ -17,10 +28,11 @@ export default function Header() {
                     _hover={{
                         cursor: "pointer",
                     }}
+                    onClick={onLogoClick}
                 >
                     <Icon as={FaCar} color="#0A5AAF" w="30px" h="30px" />
                     <Text color="#0A5AAF" fontWeight="bold" fontSize="30px">
-                        보배드림
+                        보배반점
                     </Text>
                 </HStack>
 
@@ -30,6 +42,7 @@ export default function Header() {
                             cursor: "pointer",
                             textDecoration: "underline",
                         }}
+                        onClick={onSlignInClick}
                     >
                         로그인
                     </Text>
@@ -39,6 +52,7 @@ export default function Header() {
                             cursor: "pointer",
                             textDecoration: "underline",
                         }}
+                        onClick={onSlignInClick}
                     >
                         회원가입
                     </Text>
