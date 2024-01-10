@@ -2,6 +2,7 @@ import { VStack } from "@chakra-ui/react";
 import LoginBox from "./LoginBox";
 import ReferenceBox from "./ReferenceBox";
 import NoticeBox from "./NoticeBox";
+import ETCBox from "./ETCBox";
 
 export default function Sidebar() {
     return (
@@ -16,6 +17,7 @@ export default function Sidebar() {
             <LoginBox />
             <ReferenceBox />
             <NoticeBox />
+            <ETCBox />
         </VStack>
     );
 }
