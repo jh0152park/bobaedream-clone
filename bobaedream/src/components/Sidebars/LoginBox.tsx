@@ -8,8 +8,10 @@ import {
     VStack,
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginBox() {
+    const navigate = useNavigate();
     const { register, watch, setValue, reset, handleSubmit } = useForm();
 
     function onSubmit(data: FieldValues) {
@@ -22,6 +24,10 @@ export default function LoginBox() {
             alert("비밀번호를 입력해 주세요");
             return;
         }
+    }
+
+    function onSlignInClick() {
+        navigate("/signin");
     }
 
     return (
@@ -82,9 +88,11 @@ export default function LoginBox() {
             </HStack>
 
             <HStack color="rgba(0, 0, 0, 0.7)" fontSize="11px">
-                <Text>아이디/비밀번호찾기</Text>
+                <Text _hover={{ cursor: "pointer" }}>아이디/비밀번호찾기</Text>
                 <Text> | </Text>
-                <Text>회원가입</Text>
+                <Text _hover={{ cursor: "pointer" }} onClick={onSlignInClick}>
+                    회원가입
+                </Text>
             </HStack>
         </VStack>
     );
