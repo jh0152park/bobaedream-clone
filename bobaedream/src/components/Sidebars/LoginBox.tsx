@@ -54,8 +54,8 @@ export default function LoginBox() {
                     <FormControl>
                         <Input
                             h="25px"
-                            placeholder="아이디"
-                            type="text"
+                            placeholder="이메일"
+                            type="email"
                             borderRadius="none"
                             _placeholder={{ fontSize: "10px" }}
                             border="none"
