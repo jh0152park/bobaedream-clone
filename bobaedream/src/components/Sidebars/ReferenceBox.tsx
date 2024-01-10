@@ -13,8 +13,8 @@ export default function ReferenceBox() {
                 <Text fontWeight="bold" fontSize="14px">
                     자료실
                 </Text>
-                <HStack mt="10px" spacing="20px">
-                    <VStack alignItems="flex-start">
+                <HStack mt="3px" spacing="20px">
+                    <VStack alignItems="flex-start" spacing="10px">
                         <SidebarText title={"유머게시판"} />
                         <SidebarText title={"교통사고/블박"} />
                         <SidebarText title={"국산차게시판"} />
@@ -23,7 +23,7 @@ export default function ReferenceBox() {
                         <SidebarText title={"직찍/특종발견"} />
                         <SidebarText title={"자동차사진/동영상"} />
                     </VStack>
-                    <VStack alignItems="flex-start">
+                    <VStack alignItems="flex-start" spacing="10px">
                         <SidebarText title={"레이싱모델"} />
                         <SidebarText title={"자유사진/동영상"} />
                         <SidebarText title={"군사/무기"} />
