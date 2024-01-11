@@ -5,8 +5,12 @@ import NoticeBox from "./NoticeBox";
 import ETCBox from "./ETCBox";
 import ADBox from "./ADBox";
 import SNSBox from "./SNSBox";
+import LogoutBox from "./LogoutBox";
+import { FirebaseAuth } from "../../Firebase";
 
 export default function Sidebar() {
+    const user = FirebaseAuth.currentUser;
+
     return (
         <VStack
             w="210px"
@@ -16,7 +20,7 @@ export default function Sidebar() {
             alignItems="flex-start"
             spacing={0}
         >
-            <LoginBox />
+            {user ? <LogoutBox /> : <LoginBox />}
             <ReferenceBox />
             <NoticeBox />
             <ETCBox />

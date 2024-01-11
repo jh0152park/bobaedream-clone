@@ -24,7 +24,6 @@ export async function SignInAccount(email: string, password: string) {
         );
         if (credential) {
             const user = credential.user;
-            alert(user.displayName);
         }
         return true;
     } catch (err: any) {

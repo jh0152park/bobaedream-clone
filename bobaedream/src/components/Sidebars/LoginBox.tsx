@@ -55,6 +55,7 @@ export default function LoginBox() {
                         <Input
                             h="25px"
                             placeholder="이메일"
+                            fontSize="12px"
                             id="sidebar_id_input"
                             type="email"
                             borderRadius="none"
@@ -67,6 +68,7 @@ export default function LoginBox() {
                         />
                         <Input
                             h="25px"
+                            fontSize="12px"
                             id="sidebar_pw_input"
                             placeholder="비밀번호"
                             type="password"
