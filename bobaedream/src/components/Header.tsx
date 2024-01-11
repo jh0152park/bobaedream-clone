@@ -32,7 +32,7 @@ export default function Header() {
                 >
                     <Icon as={FaCar} color="#0A5AAF" w="30px" h="30px" />
                     <Text color="#0A5AAF" fontWeight="bold" fontSize="30px">
-                        보배반점
+                        보배드럼
                     </Text>
                 </HStack>
 
