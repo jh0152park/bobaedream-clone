@@ -9,12 +9,16 @@ import {
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { SignInAccount } from "../../utils/accounts/SignInAccount";
+import { useSetRecoilState } from "recoil";
+import { IsUserLogin } from "../../ProjectCommon";
 
 export default function LoginBox() {
     const navigate = useNavigate();
+    const setIsUserLogin = useSetRecoilState(IsUserLogin);
     const { register, watch, setValue, reset, handleSubmit } = useForm();
 
-    function onSubmit(data: FieldValues) {
+    async function onSubmit(data: FieldValues) {
         console.log(data);
         if (!data.id) {
             alert("아이디를 입력해 주세요");
@@ -23,6 +27,11 @@ export default function LoginBox() {
         if (!data.pw) {
             alert("비밀번호를 입력해 주세요");
             return;
+        }
+        if (await SignInAccount(data.id, data.pw)) {
+            // window.location.replace("/");
+            setIsUserLogin(true);
+            reset();
         }
     }
 
@@ -55,6 +64,7 @@ export default function LoginBox() {
                         <Input
                             h="25px"
                             placeholder="이메일"
+                            fontSize="12px"
                             id="sidebar_id_input"
                             type="email"
                             borderRadius="none"
@@ -67,6 +77,7 @@ export default function LoginBox() {
                         />
                         <Input
                             h="25px"
+                            fontSize="12px"
                             id="sidebar_pw_input"
                             placeholder="비밀번호"
                             type="password"
