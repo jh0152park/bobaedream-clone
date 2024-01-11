@@ -15,6 +15,8 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { CreateAccount } from "../utils/accounts/CreateAccount";
 import { SignInAccount } from "../utils/accounts/SignInAccount";
+import { useSetRecoilState } from "recoil";
+import { IsUserLogin } from "../ProjectCommon";
 
 export default function SignIn() {
     const image =
@@ -23,6 +25,7 @@ export default function SignIn() {
     const navigate = useNavigate();
     const { register, handleSubmit, reset } = useForm();
     const [signup, setSignup] = useState(false);
+    const setIsUserLogin = useSetRecoilState(IsUserLogin);
 
     async function onSubmit(data: FieldValues) {
         console.log(data);
@@ -41,6 +44,7 @@ export default function SignIn() {
             }
         } else {
             if (await SignInAccount(data.id, data.pw)) {
+                setIsUserLogin(true);
                 navigate("/");
             }
         }

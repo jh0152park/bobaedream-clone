@@ -7,9 +7,11 @@ import ADBox from "./ADBox";
 import SNSBox from "./SNSBox";
 import LogoutBox from "./LogoutBox";
 import { FirebaseAuth } from "../../Firebase";
+import { useRecoilValue } from "recoil";
+import { IsUserLogin } from "../../ProjectCommon";
 
 export default function Sidebar() {
-    const user = FirebaseAuth.currentUser;
+    const isUserLogin = useRecoilValue(IsUserLogin);
 
     return (
         <VStack
@@ -20,7 +22,7 @@ export default function Sidebar() {
             alignItems="flex-start"
             spacing={0}
         >
-            {user ? <LogoutBox /> : <LoginBox />}
+            {isUserLogin ? <LogoutBox /> : <LoginBox />}
             <ReferenceBox />
             <NoticeBox />
             <ETCBox />
