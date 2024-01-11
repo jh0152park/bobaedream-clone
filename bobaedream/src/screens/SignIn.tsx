@@ -17,7 +17,7 @@ export default function SignIn() {
     return (
         <Center w="100%" h="100vh">
             <VStack w="630px" h="300px" alignItems="flex-start" mt="-500px">
-                <Heading color="#0A5AAF">보배반점</Heading>
+                <Heading color="#0A5AAF">보배드럼</Heading>
                 <Center
                     p="30px"
                     border="1px solid rgba(0, 0, 0, 0.3)"
