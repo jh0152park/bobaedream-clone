@@ -4,6 +4,7 @@ import App from "./App";
 import { reset } from "styled-reset";
 import { createGlobalStyle } from "styled-components";
 import { ChakraProvider } from "@chakra-ui/react";
+import { FirebaseApp } from "./Firebase";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}

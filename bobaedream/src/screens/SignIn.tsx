@@ -7,10 +7,14 @@ import {
     Heading,
     Image,
     Input,
+    Text,
     VStack,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { CreateAccount } from "../utils/accounts/CreateAccount";
+import { SignInAccount } from "../utils/accounts/SignInAccount";
 
 export default function SignIn() {
     const image =
@@ -18,8 +22,9 @@ export default function SignIn() {
 
     const navigate = useNavigate();
     const { register, handleSubmit, reset } = useForm();
+    const [signup, setSignup] = useState(false);
 
-    function onSubmit(data: FieldValues) {
+    async function onSubmit(data: FieldValues) {
         console.log(data);
         if (!data.id) {
             alert("아이디를 입력해 주세요");
@@ -29,6 +34,20 @@ export default function SignIn() {
             alert("비밀번호를 입력해 주세요");
             return;
         }
+
+        if (signup) {
+            if (await CreateAccount(data.id, data.pw, data.name)) {
+                navigate("/");
+            }
+        } else {
+            if (await SignInAccount(data.id, data.pw)) {
+                navigate("/");
+            }
+        }
+    }
+
+    function toggleSignup() {
+        setSignup((prev) => !prev);
     }
 
     return (
@@ -74,19 +93,44 @@ export default function SignIn() {
                                     bgColor="white"
                                     {...register("pw")}
                                 />
+                                {signup && (
+                                    <Input
+                                        id="username_input"
+                                        placeholder="닉네임"
+                                        type="text"
+                                        borderRadius="none"
+                                        borderTop="none"
+                                        bgColor="white"
+                                        {...register("name", {
+                                            required: true,
+                                        })}
+                                    />
+                                )}
                             </FormControl>
                             <Center
                                 bgColor="#0A5AAF"
                                 color="white"
                                 w="100%"
-                                h="100px"
+                                minH="40px"
+                                maxH="40px"
                                 borderRadius="none"
-                                mt="50px"
+                                mt={signup ? "0px" : "40px"}
                                 as="button"
                                 fontWeight="bold"
                             >
                                 로그인
                             </Center>
+                            <Box
+                                _hover={{
+                                    cursor: "pointer",
+                                    textDecoration: "underline",
+                                }}
+                                onClick={toggleSignup}
+                            >
+                                <Text fontSize="11px">
+                                    회원가입 / 로그인하기
+                                </Text>
+                            </Box>
                         </VStack>
 
                         <Box
