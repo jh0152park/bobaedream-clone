@@ -28,7 +28,6 @@ export default function SignIn() {
     const setIsUserLogin = useSetRecoilState(IsUserLogin);
 
     async function onSubmit(data: FieldValues) {
-        console.log(data);
         if (!data.id) {
             alert("아이디를 입력해 주세요");
             return;

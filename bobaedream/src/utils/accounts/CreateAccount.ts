@@ -1,18 +1,9 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { FirebaseAuth } from "../../Firebase";
-
-// const firebaseConfig = {
-//     apiKey: process.env.REACT_APP_API_KEY,
-//     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-//     projectId: process.env.REACT_APP_PROJECT_ID,
-//     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-//     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-//     appId: process.env.REACT_APP_APP_ID,
-// };
-
-// const FirebaseApp = initializeApp(firebaseConfig);
-
-// const auth = getAuth();
+import { FirebaseAuth, FirebaseDB } from "../../Firebase";
+import {
+    CreateUserAllNameDB,
+    IsExistUserName,
+} from "../firestore/CreateUserDB";
 
 export async function CreateAccount(
     email: string,
@@ -20,6 +11,13 @@ export async function CreateAccount(
     nickname: string
 ) {
     try {
+        const exist = await IsExistUserName(nickname);
+
+        if (exist) {
+            alert("사용중인 닉네임 입니다.");
+            return false;
+        }
+
         const credential = await createUserWithEmailAndPassword(
             FirebaseAuth,
             email,
@@ -27,12 +25,19 @@ export async function CreateAccount(
         );
         if (credential) {
             const user = credential.user;
-            if (nickname) {
-                await updateProfile(user, {
-                    displayName: nickname,
-                });
-            }
+
+            await updateProfile(user, {
+                displayName: nickname,
+            });
+            CreateUserAllNameDB(nickname);
         }
+
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = ("0" + (today.getMonth() + 1)).slice(-2);
+        let day = ("0" + today.getDate()).slice(-2);
+        let dateString = year + "-" + month + "-" + day;
+
         return true;
     } catch (err: any) {
         const message = err.message;
