@@ -37,7 +37,7 @@ export async function CreateAccount(
                 displayName: nickname,
             });
             CreateUserAllNameDB(nickname);
-            CreateUserDB(nickname, dateString, user.uid);
+            CreateUserDB(email, password, nickname, dateString, user.uid);
         }
 
         return true;
