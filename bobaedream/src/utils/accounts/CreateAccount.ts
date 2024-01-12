@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { FirebaseAuth, FirebaseDB } from "../../Firebase";
 import {
     CreateUserAllNameDB,
+    CreateUserDB,
     IsExistUserName,
 } from "../firestore/CreateUserDB";
 
@@ -18,6 +19,12 @@ export async function CreateAccount(
             return false;
         }
 
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = ("0" + (today.getMonth() + 1)).slice(-2);
+        let day = ("0" + today.getDate()).slice(-2);
+        let dateString = year + "-" + month + "-" + day;
+
         const credential = await createUserWithEmailAndPassword(
             FirebaseAuth,
             email,
@@ -30,13 +37,8 @@ export async function CreateAccount(
                 displayName: nickname,
             });
             CreateUserAllNameDB(nickname);
+            CreateUserDB(nickname, dateString, user.uid);
         }
-
-        let today = new Date();
-        let year = today.getFullYear();
-        let month = ("0" + (today.getMonth() + 1)).slice(-2);
-        let day = ("0" + today.getDate()).slice(-2);
-        let dateString = year + "-" + month + "-" + day;
 
         return true;
     } catch (err: any) {
