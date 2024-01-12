@@ -1,5 +1,7 @@
 import { Box, Center, HStack, Text, VStack } from "@chakra-ui/react";
-import { FirebaseAuth } from "../../Firebase";
+import { FirebaseAuth, FirebaseDB } from "../../Firebase";
+import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 export default function LogoutBox() {
     const user = FirebaseAuth.currentUser;
@@ -44,7 +46,11 @@ export default function LogoutBox() {
                         alignItems="center"
                         justifyContent="flex-start"
                     >
-                        <Text fontSize="12px">{user?.displayName}</Text>
+                        <Text fontSize="12px">
+                            {user?.metadata.creationTime
+                                ?.split(" ")
+                                .slice(0, 4)}
+                        </Text>
                     </Box>
                 </VStack>
                 <Center

@@ -21,7 +21,7 @@ export async function CreateUserDB(
         email: id,
         password: pw,
         name: name,
-        createAt: createAt,
+        createdAt: createAt,
         post: [],
         comment: [],
     });

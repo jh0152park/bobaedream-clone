@@ -19,7 +19,6 @@ export default function LoginBox() {
     const { register, watch, setValue, reset, handleSubmit } = useForm();
 
     async function onSubmit(data: FieldValues) {
-        console.log(data);
         if (!data.id) {
             alert("아이디를 입력해 주세요");
             return;
