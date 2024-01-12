@@ -3,6 +3,7 @@ import Notfound from "./screens/Notfound";
 import Main from "./screens/Main";
 import Layout from "./screens/Loyout";
 import SignIn from "./screens/SignIn";
+import Post from "./screens/Post";
 
 const route = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ const route = createBrowserRouter([
             {
                 path: "",
                 element: <Main />,
+            },
+            {
+                path: "post",
+                element: <Post />,
             },
         ],
     },

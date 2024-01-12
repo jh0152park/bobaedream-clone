@@ -6,7 +6,6 @@ import ETCBox from "./ETCBox";
 import ADBox from "./ADBox";
 import SNSBox from "./SNSBox";
 import LogoutBox from "./LogoutBox";
-import { FirebaseAuth } from "../../Firebase";
 import { useRecoilValue } from "recoil";
 import { IsUserLogin } from "../../ProjectCommon";
 
