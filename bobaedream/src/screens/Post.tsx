@@ -8,9 +8,14 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
+import { createPostDB } from "../utils/firestore/CreatePostDB";
+import { FirebaseAuth } from "../Firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Post() {
+    const user = FirebaseAuth.currentUser;
     const toast = useToast();
+    const navigate = useNavigate();
     const { register, reset, handleSubmit } = useForm();
 
     function onSubmit(data: FieldValues) {
@@ -33,6 +38,27 @@ export default function Post() {
             });
             return;
         }
+
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = ("0" + (today.getMonth() + 1)).slice(-2);
+        let day = ("0" + today.getDate()).slice(-2);
+        let dateString = year + "-" + month + "-" + day;
+
+        let hours = ("0" + today.getHours()).slice(-2);
+        let minutes = ("0" + today.getMinutes()).slice(-2);
+        let seconds = ("0" + today.getSeconds()).slice(-2);
+        let timeString = hours + ":" + minutes + ":" + seconds;
+
+        const createAt = `${dateString}_${timeString}`;
+        createPostDB(
+            user?.displayName as "",
+            createAt,
+            data.title,
+            data.content
+        );
+        reset();
+        navigate("/");
     }
 
     return (

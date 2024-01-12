@@ -9,16 +9,18 @@ import {
     Input,
     Text,
     VStack,
+    useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { CreateAccount } from "../utils/accounts/CreateAccount";
-import { SignInAccount } from "../utils/accounts/SignInAccount";
+import { CreateAccount } from "../utils/account/CreateAccount";
+import { SignInAccount } from "../utils/account/SignInAccount";
 import { useSetRecoilState } from "recoil";
 import { IsUserLogin } from "../ProjectCommon";
 
 export default function SignIn() {
+    const toast = useToast();
     const image =
         "https://images.unsplash.com/photo-1650741064255-69aec2144873?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
@@ -40,6 +42,11 @@ export default function SignIn() {
         if (signup) {
             if (await CreateAccount(data.id, data.pw, data.name)) {
                 navigate("/");
+                toast({
+                    status: "info",
+                    title: "회원가입 완료",
+                    description: "계속 이용하시려면 로그인 하세요",
+                });
             }
         } else {
             if (await SignInAccount(data.id, data.pw)) {

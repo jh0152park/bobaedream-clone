@@ -11,11 +11,15 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import { FirebaseDB } from "../../Firebase";
 
 export async function CreateUserDB(
+    id: string,
+    pw: string,
     name: string,
     createAt: string,
     uid: string
 ) {
     await addDoc(collection(FirebaseDB, uid), {
+        email: id,
+        password: pw,
         name: name,
         createAt: createAt,
         post: [],
