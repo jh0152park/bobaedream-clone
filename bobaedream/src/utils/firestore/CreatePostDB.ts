@@ -15,7 +15,8 @@ export async function createPostDB(
 ) {
     await addDoc(collection(FirebaseDB, "posts"), {
         auther: auther,
-        createdAt: createdAt,
+        postedAt: createdAt,
+        createdAt: Date.now(),
         title: title,
         content: content,
         view: 0,
