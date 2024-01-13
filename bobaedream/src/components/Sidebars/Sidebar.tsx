@@ -8,9 +8,14 @@ import SNSBox from "./SNSBox";
 import LogoutBox from "./LogoutBox";
 import { useRecoilValue } from "recoil";
 import { IsUserLogin } from "../../ProjectCommon";
+import { FirebaseAuth } from "../../Firebase";
 
 export default function Sidebar() {
+    const user = FirebaseAuth.currentUser;
     const isUserLogin = useRecoilValue(IsUserLogin);
+
+    console.log(`is user login: ${isUserLogin}`);
+    console.log(`Firebase user: ${user}`);
 
     return (
         <VStack

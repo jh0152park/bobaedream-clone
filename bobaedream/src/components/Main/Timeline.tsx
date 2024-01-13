@@ -13,10 +13,13 @@ export default function Timeline() {
 
             await onSnapshot(postQuery, (snapshot) => {
                 snapshot.docs.map((doc) => {
-                    console.log(doc);
+                    // console.log(doc);
+                    console.log(doc.data());
                 });
             });
         }
+
+        fetchPosts();
     }, []);
 
     return <VStack w="100%" h="100%" bgColor="gray"></VStack>;
