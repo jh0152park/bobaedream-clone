@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, setPersistence } from "firebase/auth";
 import { FirebaseAuth } from "../../Firebase";
 
 export async function SignInAccount(email: string, password: string) {
