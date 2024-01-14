@@ -5,6 +5,11 @@ import Layout from "./screens/Loyout";
 import SignIn from "./screens/SignIn";
 import Post from "./screens/Post";
 
+/**
+ * 투두 리스트
+ * 타임라인 포스트 그리기
+ * 각 포스트 마다 고유 아이디로 갖고 오는거 확인하기
+ */
 const route = createBrowserRouter([
     {
         path: "/",
