@@ -2,6 +2,7 @@ import { HStack, Text, VStack } from "@chakra-ui/react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { FirebaseDB } from "../../Firebase";
+import PrintPostTitle from "./PrintPostTitle";
 
 interface IPost {
     author: string;
@@ -59,7 +60,7 @@ export default function Timeline() {
     }, []);
 
     return (
-        <VStack w="100%" h="100%" bgColor="white">
+        <VStack w="100%" h="100%" bgColor="white" spacing={0}>
             <HStack
                 w="100%"
                 h="30px"
@@ -81,6 +82,16 @@ export default function Timeline() {
                     등록일
                 </Text>
             </HStack>
+            {posts?.map((post, index) => (
+                <PrintPostTitle
+                    order={index + 1}
+                    title={post.title}
+                    author={post.author}
+                    postedAt={post.postedAt}
+                    content={post.content}
+                    comments={post.comments}
+                />
+            ))}
         </VStack>
     );
 }
