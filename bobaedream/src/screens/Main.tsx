@@ -9,7 +9,7 @@ export default function Main() {
     const user = FirebaseAuth.currentUser;
 
     return (
-        <HStack w="100%" h="150vh">
+        <HStack w="100%" minH="150vh" alignItems="flex-start">
             <Sidebar />
             <VStack w="100%" h="100%">
                 <TopMenu />

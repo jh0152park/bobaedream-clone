@@ -12,6 +12,7 @@ interface IPost {
     content: string;
     view: number;
     like: number;
+    id: string;
     comments: string[];
 }
 
@@ -84,6 +85,7 @@ export default function Timeline() {
             </HStack>
             {posts?.map((post, index) => (
                 <PrintPostTitle
+                    id={post.id}
                     order={index + 1}
                     title={post.title}
                     author={post.author}
