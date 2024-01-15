@@ -7,6 +7,7 @@ import {
     VStack,
     useToast,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -16,6 +17,9 @@ export default function Edit() {
     const location = useLocation();
     const editInfo = { ...location.state };
     const { register, reset, handleSubmit } = useForm();
+
+    const [title, setTitle] = useState(editInfo.title);
+    const [content, setContent] = useState(editInfo.content);
 
     function onSubmit(data: FieldValues) {
         if (!data.title) {
@@ -85,8 +89,11 @@ export default function Edit() {
                     color="black"
                     fontSize="15px"
                     bgColor="white"
-                    value={editInfo.title}
-                    {...register("title", { required: false })}
+                    value={title}
+                    onChange={(event) => {
+                        setTitle(event.target.value);
+                    }}
+                    // {...register("title", { required: false })}
                 />
                 <Textarea
                     w="100%"
@@ -100,8 +107,11 @@ export default function Edit() {
                         color: "black",
                         fontSize: "15px",
                     }}
-                    value={editInfo.content}
-                    {...register("content", { required: false })}
+                    value={content}
+                    onChange={(event) => {
+                        setContent(event.target.value);
+                    }}
+                    // {...register("content", { required: false })}
                 />
             </FormControl>
         </VStack>
