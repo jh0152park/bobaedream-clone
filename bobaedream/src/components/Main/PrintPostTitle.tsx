@@ -1,4 +1,5 @@
 import { HStack, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 interface IPorps {
     order: number;
@@ -17,6 +18,19 @@ export default function PrintPostTitle({
     content,
     comments,
 }: IPorps) {
+    const navigate = useNavigate();
+
+    function onPostClick() {
+        navigate("/detail", {
+            state: {
+                title,
+                author,
+                content,
+                comments,
+            },
+        });
+    }
+
     return (
         <HStack
             w="100%"
@@ -25,6 +39,7 @@ export default function PrintPostTitle({
             borderBottom="1px solid rgba(0, 0, 0, 0.5)"
             fontSize="12px"
             _hover={{ cursor: "pointer" }}
+            onClick={onPostClick}
         >
             <Text w="15%" textAlign="center">
                 {order}

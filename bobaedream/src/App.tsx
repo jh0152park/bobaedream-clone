@@ -4,6 +4,7 @@ import Main from "./screens/Main";
 import Layout from "./screens/Loyout";
 import SignIn from "./screens/SignIn";
 import Post from "./screens/Post";
+import Detail from "./screens/Detail";
 
 /**
  * 투두 리스트
@@ -23,6 +24,10 @@ const route = createBrowserRouter([
             {
                 path: "post",
                 element: <Post />,
+            },
+            {
+                path: "detail",
+                element: <Detail />,
             },
         ],
     },
