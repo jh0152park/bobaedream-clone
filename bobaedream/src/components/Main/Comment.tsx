@@ -15,7 +15,7 @@ export default function Comment({ author, comment }: IProps) {
             overflowY="scroll"
             border="1px solid rgba(0, 0, 0, 0.5)"
         >
-            <Text>작성자: {author}</Text>
+            <Text>작성자: 🥷🏻{author}</Text>
             <Text>{comment}</Text>
         </VStack>
     );
