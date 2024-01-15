@@ -13,6 +13,7 @@ import { FirebaseAuth, FirebaseDB } from "../Firebase";
 import { IPorps } from "../components/Main/PrintPostTitle";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
+import Comment from "../components/Main/Comment";
 
 export default function Detail() {
     const navigate = useNavigate();
@@ -63,7 +64,12 @@ export default function Detail() {
 
     async function onCommentClick() {
         const postRef = doc(FirebaseDB, "posts", postInfo.id);
-        await updateDoc(postRef, { comments: [...postInfo.comments, comment] });
+        await updateDoc(postRef, {
+            comments: [
+                ...postInfo.comments,
+                { author: user?.displayName, comment },
+            ],
+        });
 
         toast({
             status: "success",
@@ -142,6 +148,10 @@ export default function Detail() {
                     등록하기
                 </Button>
             </HStack>
+
+            {postInfo.comments.map((comment: any) => (
+                <Comment author={comment.author} comment={comment.comment} />
+            ))}
         </VStack>
     );
 }
