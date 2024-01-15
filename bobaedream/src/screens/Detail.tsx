@@ -30,6 +30,7 @@ export default function Detail() {
         ) {
             navigate("/edit", {
                 state: {
+                    id: postInfo.id,
                     title: postInfo.title,
                     content: postInfo.content,
                 },

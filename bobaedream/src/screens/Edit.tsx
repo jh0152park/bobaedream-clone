@@ -7,9 +7,11 @@ import {
     VStack,
     useToast,
 } from "@chakra-ui/react";
+import { doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FirebaseDB } from "../Firebase";
 
 export default function Edit() {
     const toast = useToast();
@@ -21,8 +23,8 @@ export default function Edit() {
     const [title, setTitle] = useState(editInfo.title);
     const [content, setContent] = useState(editInfo.content);
 
-    function onSubmit(data: FieldValues) {
-        if (!data.title) {
+    async function onSubmit() {
+        if (!title) {
             toast({
                 status: "error",
                 title: "제목을 입력하세요",
@@ -31,7 +33,7 @@ export default function Edit() {
             });
             return;
         }
-        if (!data.content) {
+        if (!content) {
             toast({
                 status: "error",
                 title: "내용을 입력하세요",
@@ -40,6 +42,9 @@ export default function Edit() {
             });
             return;
         }
+
+        const postRef = doc(FirebaseDB, "posts", editInfo.id);
+        await updateDoc(postRef, { title, content });
 
         reset();
         navigate("/");
