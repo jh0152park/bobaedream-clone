@@ -107,7 +107,7 @@ export default function Detail() {
                     _hover={{ cursor: "pointer" }}
                     onClick={onDeleteClick}
                 >
-                    삭제가기
+                    삭제하기
                 </Center>
             </HStack>
             <Box
