@@ -5,5 +5,6 @@
 ![image](https://github.com/jh0152park/bobaedream-clone/assets/118165975/de080572-48ec-4a85-9046-87888bd8e081)
 
 
-https://github.com/jh0152park/bobaedream-clone/assets/118165975/05c57e9a-5fb5-490e-940f-2971136505b6
+https://github.com/jh0152park/bobaedream-clone/assets/118165975/dccecfd6-1068-4a2c-86f7-1e2704b8c154
+
 
