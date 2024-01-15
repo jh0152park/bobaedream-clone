@@ -28,6 +28,12 @@ export default function Detail() {
             user?.displayName === postInfo.author ||
             user?.displayName === "운영자"
         ) {
+            navigate("/edit", {
+                state: {
+                    title: postInfo.title,
+                    content: postInfo.content,
+                },
+            });
         } else {
             alert("글을 작성한 사람만 수정할 수 있습니다.");
         }

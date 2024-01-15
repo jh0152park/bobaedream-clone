@@ -5,6 +5,7 @@ import Layout from "./screens/Loyout";
 import SignIn from "./screens/SignIn";
 import Post from "./screens/Post";
 import Detail from "./screens/Detail";
+import Edit from "./screens/Edit";
 
 /**
  * 투두 리스트
@@ -28,6 +29,10 @@ const route = createBrowserRouter([
             {
                 path: "detail",
                 element: <Detail />,
+            },
+            {
+                path: "edit",
+                element: <Edit />,
             },
         ],
     },
