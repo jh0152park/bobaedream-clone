@@ -1,13 +1,14 @@
 import { HStack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-interface IPorps {
+export interface IPorps {
     order: number;
     title: string;
     author: string;
     postedAt: string;
     content: string;
     comments: string[];
+    id: string;
 }
 
 export default function PrintPostTitle({
@@ -17,6 +18,7 @@ export default function PrintPostTitle({
     postedAt,
     content,
     comments,
+    id,
 }: IPorps) {
     const navigate = useNavigate();
 
@@ -27,6 +29,7 @@ export default function PrintPostTitle({
                 author,
                 content,
                 comments,
+                id,
             },
         });
     }
