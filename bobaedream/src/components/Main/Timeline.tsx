@@ -1,26 +1,86 @@
-import { VStack } from "@chakra-ui/react";
+import { HStack, Text, VStack } from "@chakra-ui/react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FirebaseDB } from "../../Firebase";
 
+interface IPost {
+    author: string;
+    postedAt: string;
+    createdAt: number;
+    title: string;
+    content: string;
+    view: number;
+    like: number;
+    comments: string[];
+}
+
 export default function Timeline() {
+    const [posts, setPosts] = useState<IPost[]>();
+
     useEffect(() => {
         async function fetchPosts() {
             const postQuery = query(
                 collection(FirebaseDB, "posts"),
-                orderBy("createdAt", "asc")
+                orderBy("createdAt", "desc")
             );
 
             await onSnapshot(postQuery, (snapshot) => {
-                snapshot.docs.map((doc) => {
+                const entirePost = snapshot.docs.map((doc) => {
                     // console.log(doc);
-                    console.log(doc.data());
+                    // console.log(doc.data());
+                    const {
+                        author,
+                        postedAt,
+                        createdAt,
+                        title,
+                        content,
+                        view,
+                        like,
+                        comments,
+                    } = doc.data();
+                    return {
+                        author,
+                        postedAt,
+                        createdAt,
+                        title,
+                        content,
+                        view,
+                        like,
+                        comments,
+                        id: doc.id,
+                    };
                 });
+
+                setPosts(entirePost);
             });
         }
 
         fetchPosts();
     }, []);
 
-    return <VStack w="100%" h="100%" bgColor="gray"></VStack>;
+    return (
+        <VStack w="100%" h="100%" bgColor="white">
+            <HStack
+                w="100%"
+                h="30px"
+                bgColor="whitesmoke"
+                borderTop="1px solid rgba(0, 0, 0, 0.5)"
+                borderBottom="1px solid rgba(0, 0, 0, 0.5)"
+                fontSize="12px"
+            >
+                <Text w="15%" textAlign="center">
+                    번호
+                </Text>
+                <Text w="50%" textAlign="center">
+                    제목
+                </Text>
+                <Text w="15%" textAlign="center">
+                    글쓴이
+                </Text>
+                <Text w="20%" textAlign="center">
+                    등록일
+                </Text>
+            </HStack>
+        </VStack>
+    );
 }
