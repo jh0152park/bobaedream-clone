@@ -3,3 +3,7 @@
 # 거기에 이메일회원가입과 몇가지 관리지기능을 곁들인...
 
 ![image](https://github.com/jh0152park/bobaedream-clone/assets/118165975/de080572-48ec-4a85-9046-87888bd8e081)
+
+
+https://github.com/jh0152park/bobaedream-clone/assets/118165975/05c57e9a-5fb5-490e-940f-2971136505b6
+
