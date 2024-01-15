@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     Center,
     HStack,
     Text,
@@ -10,7 +11,8 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import { FirebaseAuth, FirebaseDB } from "../Firebase";
 import { IPorps } from "../components/Main/PrintPostTitle";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { useState } from "react";
 
 export default function Detail() {
     const navigate = useNavigate();
@@ -18,6 +20,7 @@ export default function Detail() {
     const user = FirebaseAuth.currentUser;
     const postInfo: IPorps = { ...location.state };
     const toast = useToast();
+    const [comment, setComment] = useState("");
 
     function onGoBackClick() {
         navigate(-1);
@@ -56,6 +59,18 @@ export default function Detail() {
         } else {
             alert("글을 작성한 사람만 삭제할 수 있습니다.");
         }
+    }
+
+    async function onCommentClick() {
+        const postRef = doc(FirebaseDB, "posts", postInfo.id);
+        await updateDoc(postRef, { comments: [...postInfo.comments, comment] });
+
+        toast({
+            status: "success",
+            title: "댓글 달기 성공",
+        });
+
+        navigate("/");
     }
 
     return (
@@ -113,16 +128,19 @@ export default function Detail() {
                     fontSize="15px"
                     color="black"
                     placeholder="댓글달기"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
                     _placeholder={{ color: "black", fontsize: "15px" }}
                 />
-                <Center
+                <Button
                     w="10%"
                     h="100%"
                     border="1px solid rgba(0, 0, 0, 0.5)"
                     borderRadius="5px"
+                    onClick={onCommentClick}
                 >
                     등록하기
-                </Center>
+                </Button>
             </HStack>
         </VStack>
     );
